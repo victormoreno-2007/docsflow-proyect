@@ -1,117 +1,120 @@
-# 📂 Estructura de Carpetas - Frontend DocsFlow
 
-Este documento explica el uso de cada carpeta y archivo en el **frontend** del proyecto **DocsFlow**, desarrollado con **React + TypeScript + Tailwind**.
+📂 Estructura del Proyecto DocsFlow
 
----
+Este documento describe la organización de carpetas y archivos tanto en el frontend (React + TypeScript + Tailwind) como en el backend (FastAPI + MySQL).
 
-## 📁 `public/`
-Contiene archivos estáticos accesibles públicamente:
-- `index.html`: punto de entrada principal de la app.
-- `favicon.ico`, logos u otros recursos que no pasan por Webpack/Vite.
+🎨 Frontend (React + TypeScript + Tailwind)
 
----
+Este documento explica el uso de cada carpeta y archivo en el frontend del proyecto DocsFlow, desarrollado con React + TypeScript + Tailwind.
 
-## 📁 `src/`
-Carpeta principal del código fuente.
+frontend/
+├── public/
+│   ├── index.html
+│   └── favicon.ico
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── common/
+│   │   ├── layout/
+│   │   ├── auth/
+│   │   └── documents/
+│   ├── contexts/
+│   ├── hooks/
+│   ├── pages/
+│   ├── routes/
+│   ├── services/
+│   ├── store/
+│   ├── styles/
+│   ├── types/
+│   ├── utils/
+│   ├── App.tsx
+│   └── main.tsx
+├── package.json
+├── tsconfig.json
+├── tailwind.config.js
+├── postcss.config.js
+└── vite.config.ts
 
-### 📁 `assets/`
-Imágenes, íconos, fuentes y recursos estáticos usados dentro de los componentes.
 
----
 
-### 📁 `components/`
-Componentes reutilizables y modulares. Se recomienda dividir en subcarpetas:
-- **`common/`**: botones, inputs, modales, loaders.
-- **`layout/`**: componentes de estructura como `Header`, `Sidebar`, `Navbar`, `Footer`.
-- **`auth/`**: formularios de autenticación (`LoginForm`, `RegisterForm`).
-- **`documents/`**: componentes específicos de documentos (`Upload`, `DocumentList`, `DocumentDetail`).
+✅ Buenas prácticas:
 
----
+Mantener componentes pequeños y reutilizables.
 
-### 📁 `contexts/`
-Manejo de **Context API** para estados globales.
-- `AuthContext.tsx`: contexto para autenticación de usuarios.
-- `ThemeContext.tsx`: contexto opcional para tema dark/light.
+Centralizar llamadas a la API en services/.
 
----
+Usar tipado estricto en types/.
 
-### 📁 `hooks/`
-Hooks personalizados de React.
-- `useAuth.ts`: encapsula la lógica de autenticación (login, logout).
-- `useDocuments.ts`: manejo de carga, búsqueda y listado de documentos.
+Mantener pages/ como vistas y delegar la lógica a hooks/servicios.
 
----
+⚙️ Backend (FastAPI + MySQL)
 
-### 📁 `pages/`
-Vistas principales que representan pantallas completas:
-- `LoginPage.tsx`
-- `DashboardPage.tsx`
-- `UsersPage.tsx`
-- `DocumentsPage.tsx`
+Este documento explica la organización de carpetas y archivos en el backend, que sigue una arquitectura MVC extendida con capas adicionales.
 
----
+backend/
+├── app/
+│   ├── main.py
+│   ├── config.py
+│   ├── database.py
+│   ├── routes.py
+│   ├── controllers/
+│   ├── services/
+│   ├── repositories/
+│   ├── models/
+│   ├── schemas/
+│   ├── utils/
+│   └── middlewares/
+├── requirements.txt
+└── .env.example
 
-### 📁 `routes/`
-Definición de rutas de la aplicación.
-- `AppRouter.tsx`: contiene la configuración de React Router (rutas públicas y protegidas).
+📁 Explicación
 
----
+main.py → Punto de entrada de FastAPI.
 
-### 📁 `services/`
-Capa de comunicación con el **backend (API)** usando **Axios**.
-- `api.ts`: configuración base de Axios + interceptores JWT.
-- `auth.service.ts`: funciones para login, registro y refresh tokens.
-- `documents.service.ts`: funciones para CRUD de documentos.
+config.py → Carga de variables de entorno.
 
----
+database.py → Configuración de conexión a MySQL.
 
-### 📁 `store/`
-Estado global de la aplicación si se usa **Zustand** o **Redux**.
-- `useUserStore.ts`
-- `useDocumentStore.ts`
+routes.py → Registro de routers.
 
----
+📁 controllers/
 
-### 📁 `styles/`
-Estilos globales.
-- `index.css`: archivo principal que importa TailwindCSS y estilos personalizados.
+Endpoints de la API.
 
----
+auth_controller.py → login, registro.
 
-### 📁 `types/`
-Interfaces y tipos de **TypeScript** para garantizar tipado estático.
-- `User.ts`: definición de un usuario.
-- `Document.ts`: definición de documentos.
-- `ApiResponse.ts`: tipos genéricos para respuestas de API.
+users_controller.py → usuarios.
 
----
+documents_controller.py → documentos.
 
-### 📁 `utils/`
-Funciones de utilidad y helpers.
-- `formatDate.ts`: formateo de fechas.
-- `parsePDF.ts`: función auxiliar para previsualización de PDFs.
-- `validators.ts`: validaciones reutilizables (emails, passwords, etc.).
+📁 services/
 
----
+Lógica de negocio.
 
-### 📄 Archivos raíz de `src/`
-- **`App.tsx`**: componente raíz de la aplicación.
-- **`main.tsx`**: punto de entrada que monta ReactDOM y configura el `AppRouter`.
+auth_service.py → validación y tokens.
 
----
+pdf_service.py → procesamiento de PDFs.
 
-## ⚙️ Archivos de configuración raíz
-- `package.json`: dependencias y scripts npm.
-- `tsconfig.json`: configuración de TypeScript.
-- `tailwind.config.js`: configuración de TailwindCSS.
-- `postcss.config.js`: configuración de PostCSS.
-- `vite.config.ts`: configuración de Vite.
+📁 repositories/
 
----
+Acceso a la base de datos.
 
-## ✅ Buenas prácticas
-1. Mantener componentes pequeños y reutilizables.
-2. Dividir `components/` en subcarpetas por dominio (auth, documents, etc.).
-3. Centralizar llamadas a la API en `services/`.
-4. Usar tipado estricto de TypeScript en `types/`.
-5. Mantener `pages/` como vistas y delegar la lógica a hooks o servicios.
+user_repo.py → CRUD usuarios.
+
+document_repo.py → CRUD documentos.
+
+📁 models/
+
+Modelos internos (dataclasses/tablas).
+
+📁 schemas/
+
+Modelos Pydantic para requests/responses.
+
+📁 utils/
+
+Funciones auxiliares (hash, JWT, validaciones).
+
+📁 middlewares/
+
+Middlewares para CORS, logging, sesiones.

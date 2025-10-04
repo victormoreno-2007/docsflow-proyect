@@ -7,10 +7,8 @@ Este documento describe el flujo de trabajo recomendado con **Git Flow**, ramas 
 ## 1. Preparación inicial
 
 1. Clonar repo e inicializar Git Flow:
-
-   ```bash
-   git clone https://github.com/xkodigo1/docsflow-front.git
-   cd frontend
+   ```bash  
+   git clone https://github.com/victormoreno-2007/docsflow-proyect.git
    git flow init
    ```
 

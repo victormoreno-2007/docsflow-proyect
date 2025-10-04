@@ -1,4 +1,6 @@
-# Logs
+# =========================
+# Logs y archivos temporales
+# =========================
 logs
 *.log
 npm-debug.log*
@@ -6,19 +8,68 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+*.tmp
+*.swp
+*.swo
+*.bak
 
-node_modules
-dist
-dist-ssr
+# =========================
+# Node.js (Frontend)
+# =========================
+node_modules/
+dist/
+dist-ssr/
 *.local
 
-# Editor directories and files
-.vscode/*
+# =========================
+# Archivos de entorno
+# =========================
+.env
+.env.*.local
+*.secret
+*.key
+
+# =========================
+# Python / FastAPI (Backend)
+# =========================
+venv/
+ENV/
+.venv/
+
+__pycache__/
+*.py[cod]
+*$py.class
+*.pdb
+*.egg-info/
+*.egg
+*.coverage
+.coverage.*
+.cache/
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Herramientas de build
+build/
+pip-wheel-metadata/
+.eggs/
+
+# Reportes de testing / coverage
+htmlcov/
+.tox/
+.nox/
+
+# =========================
+# IDEs / Entornos
+# =========================
+.vscode/
 !.vscode/extensions.json
-.idea
+.idea/
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+Thumbs.db
